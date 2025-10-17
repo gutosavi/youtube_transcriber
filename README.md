@@ -6,6 +6,12 @@ Este app combina **Whisper (OpenAI)** e **Modelos Hugging Face** para extrair á
 
 ---
 
+## Demonstração
+
+![Demo do App](./youtube_transcriber.gif)
+
+---
+
 ## Funcionalidades
 
     ✅ Download automático do áudio de vídeos do YouTube  
