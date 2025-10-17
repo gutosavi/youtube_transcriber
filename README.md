@@ -105,5 +105,3 @@ Este app combina **Whisper (OpenAI)** e **Modelos Hugging Face** para extrair á
     Este projeto é de código aberto sob a licença MIT.
     Sinta-se à vontade para usar, modificar e contribuir!
 
-
-"# youtube_transcriber" 
