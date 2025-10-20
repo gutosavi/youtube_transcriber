@@ -9,31 +9,28 @@ from langdetect import detect
 from deep_translator import GoogleTranslator
 import nltk
 
-# === DOWNLOAD DE RECURSOS NLTK ===
 nltk.download("punkt_tab")
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
     nltk.download("punkt")
 
-# === LOG AUTOMÁTICO ===
+# Log automático
 def registrar_log(mensagem):
     os.makedirs("resultados", exist_ok=True)
     with open("resultados/log.txt", "a", encoding="utf-8") as f:
         f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {mensagem}\n")
 
-# === CONFIGURAÇÕES ===
 FFMPEG_PATH = r"D:\Python\ffmpeg\bin"
 DOWNLOADS_DIR = r"D:\Python\youtube_transcriber\notebooks\downloads"
 
-# === FUNÇÃO AUXILIAR: NORMALIZAR NOMES DE ARQUIVOS ===
 def normalizar_nome(nome):
     nome = nome.lower()
     nome = re.sub(r'[^a-z0-9]+', '_', nome)
     nome = nome.strip('_')
     return f"_{nome}"
 
-# === ETAPA 1: DOWNLOAD DE ÁUDIO ===
+# Download de áudio:
 def baixar_audio(url):
     os.makedirs(DOWNLOADS_DIR, exist_ok=True)
     registrar_log(f"Iniciando download do vídeo: {url}")
@@ -64,7 +61,7 @@ def baixar_audio(url):
     print(f"Áudio salvo em: {caminho_mp3}")
     return caminho_mp3
 
-# === ETAPA 2: TRANSCRIÇÃO COM WHISPER ===
+# Transcrição:
 def transcrever_audio(caminho_audio, modelo="base"):
     registrar_log(f"Iniciando transcrição do áudio: {caminho_audio}")
     print("Transcrevendo áudio com Whisper...")
@@ -79,7 +76,6 @@ def transcrever_audio(caminho_audio, modelo="base"):
     registrar_log(f"Transcrição salva em: {caminho_txt}")
     return texto, caminho_txt
 
-# === ETAPA 2.1: LIMPAR PALAVRAS EM INGLÊS SOLTAS ===
 def limpar_ingles_estranho(texto):
     padroes = [
         r"\bthat\b", r"\bof\b", r"\bby\b", r"\band\b",
@@ -90,7 +86,6 @@ def limpar_ingles_estranho(texto):
     texto = re.sub(r"\s+", " ", texto)
     return texto.strip()
 
-# === ETAPA 2.2: DETECTAR E TRADUZIR SE NECESSÁRIO ===
 def traduzir_para_portugues_se_necessario(texto):
     try:
         idioma = detect(texto)
@@ -105,7 +100,7 @@ def traduzir_para_portugues_se_necessario(texto):
         registrar_log(f"Erro na detecção de idioma: {e}")
     return texto
 
-# === ETAPA 3: RESUMO AUTOMÁTICO ===
+# Resumo:
 def resumir_texto(texto, modelo="facebook/bart-large-cnn"):
     registrar_log(f"Iniciando resumo com modelo {modelo}")
     summarizer = pipeline("summarization", model=modelo)
@@ -130,14 +125,13 @@ def resumir_texto(texto, modelo="facebook/bart-large-cnn"):
     registrar_log("Resumo final gerado com sucesso")
     return " ".join(resumos)
 
-# === ETAPA 4: EXECUÇÃO DO PIPELINE COMPLETO ===
+# Execução do pipeline:
 if __name__ == "__main__":
     url = input("Cole o link do YouTube: ")
 
     audio_path = baixar_audio(url)
     texto_transcrito, caminho_txt = transcrever_audio(audio_path)
 
-    # 🔹 Nova etapa: limpeza e tradução
     texto_limpo = limpar_ingles_estranho(texto_transcrito)
     texto_final = traduzir_para_portugues_se_necessario(texto_limpo)
 
@@ -147,5 +141,5 @@ if __name__ == "__main__":
     with open(caminho_resumo, "w", encoding="utf-8") as f:
         f.write(resumo)
 
-    print(f"\n✅ Resumo salvo em: {caminho_resumo}")
+    print(f"\nResumo salvo em: {caminho_resumo}")
     registrar_log(f"Resumo salvo em: {caminho_resumo}")
