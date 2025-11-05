@@ -14,13 +14,13 @@ Este app combina **Whisper (OpenAI)** e **Modelos Hugging Face** para extrair á
 
 ## Funcionalidades
 
-    ✅ Download automático do áudio de vídeos do YouTube  
-    ✅ Transcrição em múltiplos idiomas (Whisper)  
-    ✅ Tradução automática para português 🇧🇷  
-    ✅ Geração de resumo inteligente com modelos da Hugging Face  
-    ✅ Geração de *insights automáticos* com base no texto  
-    ✅ Interface simples via Streamlit  
-    ✅ Registro de logs de execução  
+-> Download automático do áudio de vídeos do YouTube  
+-> Transcrição em múltiplos idiomas (Whisper)  
+-> Tradução automática para português 🇧🇷  
+-> Geração de resumo inteligente com modelos da Hugging Face  
+-> Geração de *insights automáticos* com base no texto  
+-> Interface simples via Streamlit  
+-> Registro de logs de execução  
 
 ---
 
@@ -78,36 +78,36 @@ Este app combina **Whisper (OpenAI)** e **Modelos Hugging Face** para extrair á
 
 ## Exemplo de Uso
 
-    - Insira o link de um vídeo do YouTube
-    - O app faz o download do áudio
-    - Transcreve com Whisper
-    - Traduz (se for outro idioma)
-    - Resume o texto com modelo da Hugging Face
-    - Mostra os insights automáticos
+- Insira o link de um vídeo do YouTube
+- O app faz o download do áudio
+- Transcreve com Whisper
+- Traduz (se for outro idioma)
+- Resume o texto com modelo da Hugging Face
+- Mostra os insights automáticos
 
 ---
 
 ## Próximos Passos
 
-    - Adicionar suporte a legendas (.srt)
+- Adicionar suporte a legendas (.srt)
 
-    - Permitir upload de arquivos de áudio direto
+- Permitir upload de arquivos de áudio direto
 
-    - Otimizar o pipeline para vídeos longos
+- Otimizar o pipeline para vídeos longos
 
-    - Disponibilizar API pública
+- Disponibilizar API pública
 
 ---
 
 ## Autor
 
-    Gustavo Savi
-    Junior Data Analyst & Former AI Engineer | Python | NLP | IA Aplicada
+Gustavo Savi
+Junior Data Analyst & Former AI Engineer | Python | NLP | IA Aplicada
 
 ---
 
 ## Licença
 
-    Este projeto é de código aberto sob a licença MIT.
-    Sinta-se à vontade para usar, modificar e contribuir!
+Este projeto é de código aberto sob a licença MIT.
+Sinta-se à vontade para usar, modificar e contribuir!
 
